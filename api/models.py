@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 # Choix des  Investissement
-INVESTISSEMent_CHOICES = (
+INVESTISSEMENT_CHOICES = (
 	("Parcelle","Parcelle"),
 	("Transfert","Transfert"),
 	("Véhicules","Véhicules"),
@@ -13,14 +13,14 @@ INVESTISSEMent_CHOICES = (
 	)
 
 class ComptePrincipal(models.Model):
-	id 	   = models.SmallAutoField()
-	montant = models.PositiveBigIntegerField(default=0)
+	id 	 = models.AutoField(primary_key=True)
+	montant = models.PositiveIntegerField(default=0)
 
 	def __str__(self):
 		return f" Votre Capitale est {self.montant} "
 
 class Parcelle(models.Model):
-	id = models.SmallAutoField()
+	id = models.AutoField(primary_key=True)
 	nombres_ares = models.FloatField(default=0.0)
 	prix_achat_par_are = models.PositiveBigIntegerField(default=0)
 	date_achat = models.DateTimeField(auto_now_add=True)
@@ -30,11 +30,11 @@ class Parcelle(models.Model):
 	date_vente_previ = models.DateField()
 	prix_vente_previ = models.PositiveBigIntegerField(default=0)
 
-	def__str__(self):
-	   return f"{self.nombres_ares} acheté {self.prix_achat_par_are}Fbu et vendu {self.prix_vente_previ}"
+	def __str__(self):
+		return f"{self.nombres_ares} acheté {self.prix_achat_par_are}Fbu et vendu {self.prix_vente_previ}"
 
-class Motos(models.Model):
-	id = models.SmallAutoField()
+class Moto(models.Model):
+	id = models.AutoField(primary_key=True)
 	quantite = models.PositiveIntegerField(default=0)
 	prix_achat_unitaire = models.PositiveBigIntegerField(default=0)
 	date_achat = models.DateTimeField(auto_now_add=True)
@@ -43,11 +43,11 @@ class Motos(models.Model):
 	date_vente_previ = models.DateField()
 	prix_vente_unitaire_previ = models.PositiveBigIntegerField(default=0)
 
-	def__str__(self):
+	def __str__(self):
 		return f"{self.quantite} acheté {self.prix_achat_unitaire} vendu { self.prix_vente_unitaire_previ}"
 
 class Credit(models.Model):
-	id = models.SmallAutoField()
+	id = models.AutoField(primary_key=True)
 	nom_demandeur = models.CharField(max_length=30)
 	montant = models.PositiveBigIntegerField(default=0)
 	interet_total = models.PositiveIntegerField(default=0)
@@ -59,8 +59,8 @@ class Credit(models.Model):
 		return f"{self.nom_demandeur} a {self.montant} remboursable dans { self.nombre_jours_total}"
 
 class AutresInvestissement(models.Model):
-	id = models.SmallAutoField()
-	type_investissement = models.CharField(max_length=30)
+	id = models.AutoField(primary_key=True)
+	type_investissement = models.CharField(max_length=30,choices=INVESTISSEMENT_CHOICES)
 	montant_investi = models.PositiveBigIntegerField()
 	date_investissement = models.DateTimeField(auto_now_add=True)
 	benefice = models.PositiveBigIntegerField(default=0)
@@ -71,7 +71,7 @@ class AutresInvestissement(models.Model):
 		return f"{self.montant_investi} investi au {self.type_investissement} jusqu'au {self.date_fin_investissement}"
 
 class VehiculesLocales(models.Model):
-	id = models.SmallAutoField()
+	id = models.AutoField(primary_key=True)
 	modele = models.CharField(max_length=30)
 	plaque = models.CharField(max_length=30)
 	prix_achat = models.PositiveBigIntegerField(default=0)
@@ -81,12 +81,12 @@ class VehiculesLocales(models.Model):
 	date_vente_previ = models.DateField()
 	prix_vente_previ = models.PositiveBigIntegerField(default=0)
 
-	def __str__(self):
+	def __str__(self):	
 		return f"{self.modele} { self.plaque} acheté {self.prix_achat} sera vendu { self.prix_vente_previ} au {self.date_vente_previ}"
 
 
 class ImportesJaponToDarEs(models.Model):
-	id = models.SmallAutoField()
+	id = models.AutoField(primary_key=True)
 	modele = models.CharField(max_length=30)
 	numero_chasis = models.CharField(max_length=70)
 	prix_achat_et_transport = models.PositiveBigIntegerField(default=0)
@@ -98,13 +98,13 @@ class ImportesJaponToDarEs(models.Model):
 		return f"{self.modele} achete le {self.date_achat} arrivera le {self.date_arrivee}"
 
 class ImportesDarEsToBuja(models.Model):
-	id = models.SmallAutoField()
+	id = models.AutoField(primary_key=True)
 	Dédouanement  = models.PositiveBigIntegerField(default=0)
 	transport = models.PositiveBigIntegerField(default=0)
 	taux= models.PositiveIntegerField(default=0)
 	autre_dépenses= models.PositiveIntegerField(default=0)
 	details = models.TextField()
-	taux = models.DateTimeField(auto_now_add=True)
+	date = models.DateTimeField(auto_now_add=True)
 	prix_vente_previ= models.PositiveBigIntegerField(default=0)
 
 	def __str__(self):
