@@ -7,14 +7,17 @@ from .views import *
 
 router = routers.DefaultRouter()
 
-router.register("Compte Principal", ComptePrincipalViewset)
+router.register("Compte_Principal", ComptePrincipalViewset)
 router.register("Parcelle", ParcelleViewset)
 router.register("moto", MotoViewset)
 router.register("Credit", CreditViewset)
-router.register("autres investssements", AutresInvestissementViewset)
-router.register("vehicules locales", VehiculesLocalesViewset)
-router.register("importation japon to dar-es-salam", ImportesJaponToDarEsViewset)
-router.register("importation dar-es-salam to Buja", ImportesDarEsToBujaViewset)
+router.register("Income", IncomeViewset)
+router.register("Outcome", OutcomeViewset)
+router.register("Dette", DetteViewset)
+router.register("autres_investssements", AutresInvestissementViewset)
+router.register("vehicules_locales", VehiculesLocalesViewset)
+router.register("importation_japon_to_darEsSalam", ImportesJaponToDarEsViewset)
+router.register("importation_darEsSalam_to_Buja", ImportesDarEsToBujaViewset)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 # Choix des  Investissement
 INVESTISSEMENT_CHOICES = (
@@ -60,7 +59,7 @@ class Credit(models.Model):
 
 class AutresInvestissement(models.Model):
 	id = models.AutoField(primary_key=True)
-	type_investissement = models.CharField(max_length=30,choices=INVESTISSEMENT_CHOICES)
+	nom_investissement = models.CharField(max_length=30)
 	montant_investi = models.PositiveBigIntegerField()
 	date_investissement = models.DateTimeField(auto_now_add=True)
 	benefice = models.PositiveBigIntegerField(default=0)
@@ -109,3 +108,31 @@ class ImportesDarEsToBuja(models.Model):
 
 	def __str__(self):
 		return f"{self.Dédouanement} {self.taux} {self.taux} {self.prix_vente_previ}"
+
+
+class Income(models.Model):
+	source = models.CharField(max_length=30,blank=False)
+	montant = models.PositiveBigIntegerField(default=20)
+	provenance = models.CharField(max_length=30)
+	is_dette = models.BooleanField()
+	date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return f"{self.source} {self.montant} en {self.provenance}"
+
+class Outcome(models.Model):
+	raison = models.CharField(max_length=30,blank=False)
+	montant = models.PositiveBigIntegerField(default=20)
+	is_dette = models.BooleanField()
+	date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return f"{self.raison} {self.montant} "
+
+class Dette(models.Model):
+	nom = models.CharField(max_length=30,blank=False)
+	montant = models.PositiveBigIntegerField(default=20)
+	date = models.DateTimeField(auto_now_add=True)
+	
+	def __str__(self):
+		return f"{self.nom} {self.montant}"

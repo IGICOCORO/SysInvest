@@ -43,7 +43,21 @@ class ImportesDarEsToBujaSerializer(serializers.ModelSerializer):
         model = ImportesDarEsToBuja
         fields = '__all__'
 
-    
+class IncomeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Income
+        fields = '__all__'
+
+class OutcomeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Outcome
+        fields = '__all__'
+
+class DetteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dette
+        fields = '__all__'
+
 class TokenPairSerializer(TokenObtainPairSerializer):
 
     def validate(self, attrs):

@@ -23,8 +23,8 @@ class Credit(admin.ModelAdmin):
 
 @admin.register(AutresInvestissement)
 class AutresInvestissement(admin.ModelAdmin):
-	list_display = "type_investissement","montant_investi","date_investissement","benefice","date_fin_investissement"
-	search_fields = "type_investissement",
+	list_display = "nom_investissement","montant_investi","date_investissement","benefice","date_fin_investissement"
+	search_fields = "nom_investissement",
 
 
 @admin.register(VehiculesLocales)
@@ -43,3 +43,19 @@ class ImportesJaponToDarEs(admin.ModelAdmin):
 class ImportesDarEsToBuja(admin.ModelAdmin):
 	list_display = "Dédouanement","transport","taux","autre_dépenses","details","date","prix_vente_previ"
 	search_fields = "Dédouanement","transport",
+
+@admin.register(Income)
+class Income(admin.ModelAdmin):
+	list_display = "source","montant","provenance","is_dette","date"
+	search_fields = "source","provenance",
+
+
+@admin.register(Outcome)
+class Outcome(admin.ModelAdmin):
+	list_display = "raison","montant","is_dette","date"
+	search_fields = "raison","montant",
+
+@admin.register(Dette)
+class Dette(admin.ModelAdmin):
+	list_display = "nom","montant","date"
+	search_fields = "nom","montant",

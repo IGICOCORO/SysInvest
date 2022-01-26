@@ -64,4 +64,22 @@ class ImportesDarEsToBujaViewset(viewsets.ModelViewSet):
 	queryset = ImportesDarEsToBuja.objects.all()
 	authentication_classes = [JWTAuthentication, SessionAuthentication]
 	permission_classes = [IsAuthenticated]
+
+class IncomeViewset(viewsets.ModelViewSet):
+	serializer_class = IncomeSerializer
+	queryset = Income.objects.all()
+	authentication_classes = [JWTAuthentication, SessionAuthentication]
+	permission_classes = [IsAuthenticated]
+
+class OutcomeViewset(viewsets.ModelViewSet):
+	serializer_class = OutcomeSerializer
+	queryset = Outcome.objects.all()
+	authentication_classes = [JWTAuthentication, SessionAuthentication]
+	permission_classes = [IsAuthenticated]
 	
+class DetteViewset(viewsets.ModelViewSet):
+	serializer_class = DetteSerializer
+	queryset = Dette.objects.all()
+	authentication_classes = [JWTAuthentication, SessionAuthentication]
+	permission_classes = [IsAuthenticated]
+				
