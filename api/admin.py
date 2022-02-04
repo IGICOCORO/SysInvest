@@ -6,7 +6,6 @@ from .models import *
 class ComptePrincipal(admin.ModelAdmin):
 	list_display = "montant",
 	search_fields = "id",
-
 @admin.register(Parcelle)
 class Parcelle(admin.ModelAdmin):
 	list_display = "nombres_ares","prix_achat_par_are","date_achat","autres_depenses","lieu","date_vente_previ","prix_vente_previ"
@@ -37,7 +36,6 @@ class VehiculesLocales(admin.ModelAdmin):
 class ImportesJaponToDarEs(admin.ModelAdmin):
 	list_display = "modele","numero_chasis","prix_achat_et_transport","taux_echange","date_achat","date_arrivee"
 	search_fields = "numero_chasis","modele",
-
 
 @admin.register(ImportesDarEsToBuja)
 class ImportesDarEsToBuja(admin.ModelAdmin):
