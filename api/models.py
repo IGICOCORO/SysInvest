@@ -13,10 +13,10 @@ INVESTISSEMENT_CHOICES = (
 
 class ComptePrincipal(models.Model):
 	id 	 = models.AutoField(primary_key=True)
-	montant = models.PositiveIntegerField(default=0)
+	solde = models.PositiveIntegerField(default=0)
 
 	def __str__(self):
-		return f" Votre Capitale est {self.montant} "
+		return f" Votre Capitale est {self.solde} "
 
 class Parcelle(models.Model):
 	id = models.AutoField(primary_key=True)

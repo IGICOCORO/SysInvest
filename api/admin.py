@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 @admin.register(ComptePrincipal)
 class ComptePrincipal(admin.ModelAdmin):
-	list_display = "montant",
+	list_display = "solde",
 	search_fields = "id",
 @admin.register(Parcelle)
 class Parcelle(admin.ModelAdmin):
