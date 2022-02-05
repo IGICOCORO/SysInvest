@@ -53,8 +53,8 @@ class MotoViewset(viewsets.ModelViewSet):
 		serializer.is_valid(raise_exception=True)
 		data = request.data
 		compte:ComptePrincipal = ComptePrincipal.objects.first()
-		compte.montant -= int(data["prix_achat_unitaire"])
-		compte.montant -= int(data["autres_depenses"])
+		compte.solde -= int(data["prix_achat_unitaire"])
+		compte.solde -= int(data['autres_depenses'])
 		compte.save()
 		serializer.save()
 		return Response(serializer.data,201)
@@ -66,15 +66,14 @@ class CreditViewset(viewsets.ModelViewSet):
 	authentication_classes = [JWTAuthentication, SessionAuthentication]
 	permission_classes = [IsAuthenticated]
 
-
 	@transaction.atomic
-	def create(self, request, *args, **kwargs):
+	def create(self, request, *args, **kwargs): 
 		serializer = self.get_serializer(data=request.data)
 		serializer.is_valid(raise_exception=True)
 		data = request.data
-		credit:ComptePrincipal = ComptePrincipal.objects.first()
-		credit.montant -= int(data["montant"])
-		credit.save()
+		compte:ComptePrincipal = ComptePrincipal.objects.first()
+		compte.solde -= int(data['montant'])
+		compte.save()
 		serializer.save()
 		return Response(serializer.data,201)
 
