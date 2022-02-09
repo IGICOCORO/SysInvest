@@ -41,6 +41,18 @@ class ParcelleViewset(viewsets.ModelViewSet):
 	authentication_classes = [JWTAuthentication, SessionAuthentication]
 	permission_classes = [IsAuthenticated]
 
+	@transaction.atomic
+	def create(self, request, *args, **kwargs): 
+		serializer = self.get_serializer(data=request.data)
+		serializer.is_valid(raise_exception=True)
+		data = request.data
+		compte:ComptePrincipal = ComptePrincipal.objects.first()
+		compte.solde -= int(data['prix_achat_par_are'])
+		compte.solde -= int(data['autres_depenses'])
+		compte.save()
+		serializer.save()
+		return Response(serializer.data,201)
+
 class MotoViewset(viewsets.ModelViewSet):
 	serializer_class = MotoSerializer
 	queryset = Moto.objects.all()
@@ -82,6 +94,17 @@ class AutresInvestissementViewset(viewsets.ModelViewSet):
 	queryset = AutresInvestissement.objects.all()
 	authentication_classes = [JWTAuthentication, SessionAuthentication]
 	permission_classes = [IsAuthenticated]
+
+	@transaction.atomic
+	def create(self, request, *args, **kwargs): 
+		serializer = self.get_serializer(data=request.data)
+		serializer.is_valid(raise_exception=True)
+		data = request.data
+		compte:ComptePrincipal = ComptePrincipal.objects.first()
+		compte.solde -= int(data['montant_investi'])
+		compte.save()
+		serializer.save()
+		return Response(serializer.data,201)
 
 
 class VehiculesLocalesViewset(viewsets.ModelViewSet):
