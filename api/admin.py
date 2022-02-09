@@ -44,14 +44,14 @@ class ImportesDarEsToBuja(admin.ModelAdmin):
 
 @admin.register(Income)
 class Income(admin.ModelAdmin):
-	list_display = "source","montant","provenance","is_dette","date"
+	list_display = "source","montant","provenance","date"
 	search_fields = "source","provenance",
 
 
 @admin.register(Outcome)
 class Outcome(admin.ModelAdmin):
-	list_display = "raison","montant","is_dette","date"
-	search_fields = "raison","montant",
+	list_display = "raison","montant","partenaire","date"
+	search_fields = "raison","montant","partenaire"
 
 @admin.register(Dette)
 class Dette(admin.ModelAdmin):

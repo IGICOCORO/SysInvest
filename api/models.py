@@ -115,7 +115,7 @@ class Income(models.Model):
 	montant = models.PositiveBigIntegerField(default=20)
 	provenance = models.CharField(max_length=30)
 	is_dette = models.BooleanField()
-	date = models.DateTimeField(auto_now_add=True)
+	date = models.DateField(auto_now_add=True)
 
 	def __str__(self):
 		return f"{self.source} {self.montant} en {self.provenance}"
@@ -123,8 +123,8 @@ class Income(models.Model):
 class Outcome(models.Model):
 	raison = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
-	is_dette = models.BooleanField()
-	date = models.DateTimeField(auto_now_add=True)
+	partenaire = models.CharField(max_length=50,blank=True,null=True)
+	date = models.DateField(auto_now_add=True)
 
 	def __str__(self):
 		return f"{self.raison} {self.montant} "
