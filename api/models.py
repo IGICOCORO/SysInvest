@@ -141,7 +141,7 @@ class Outcome(models.Model):
 		return f"{self.raison} {self.montant} "
 
 class Dette(models.Model):
-	nom = models.CharField(max_length=30,blank=False)
+	partenaire = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
 	date = models.DateTimeField(auto_now_add=True)
 	

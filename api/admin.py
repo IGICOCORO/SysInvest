@@ -55,5 +55,5 @@ class Outcome(admin.ModelAdmin):
 
 @admin.register(Dette)
 class Dette(admin.ModelAdmin):
-	list_display = "nom","montant","date"
-	search_fields = "nom","montant",
+	list_display = "partenaire","montant","date"
+	search_fields = "partenaire","montant",
