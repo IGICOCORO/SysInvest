@@ -10,6 +10,17 @@ INVESTISSEMENT_CHOICES = (
 	("Credit","Credit"),
 	("Autres investissments ","Autres investissments "),
 	)
+# Choix des  BANKS
+BANKS_CHOICES = (
+	("BCB","BCB"),
+	("BANCOBU","BANCOBU"),
+	("KCB","KCB"),
+	("CRDB","CRDB"),
+	("IBB","IBB"),
+	("ECOBANK","ECOBANK"),
+	("FINBANK","FINBANK"),
+	("DTB","DTB"),
+	)
 
 class ComptePrincipal(models.Model):
 	id 	 = models.AutoField(primary_key=True)
@@ -113,8 +124,7 @@ class ImportesDarEsToBuja(models.Model):
 class Income(models.Model):
 	source = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
-	provenance = models.CharField(max_length=30)
-	is_dette = models.BooleanField()
+	partenaire = models.CharField(max_length=30,blank=True,null=True)
 	date = models.DateField(auto_now_add=True)
 
 	def __str__(self):
