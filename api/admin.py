@@ -34,7 +34,7 @@ class VehiculesLocales(admin.ModelAdmin):
 
 @admin.register(ImportesJaponToDarEs)
 class ImportesJaponToDarEs(admin.ModelAdmin):
-	list_display = "modele","numero_chasis","prix_achat_et_transport","taux_echange","date_achat","date_arrivee"
+	list_display = "modele","numero_chasis","prix_achat","transport","taux_echange","date_achat","date_arrivee"
 	search_fields = "numero_chasis","modele",
 
 @admin.register(ImportesDarEsToBuja)
