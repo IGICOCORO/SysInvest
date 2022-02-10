@@ -44,8 +44,8 @@ class ImportesDarEsToBuja(admin.ModelAdmin):
 
 @admin.register(Income)
 class Income(admin.ModelAdmin):
-	list_display = "source","montant","provenance","date"
-	search_fields = "source","provenance",
+	list_display = "source","montant","partenaire","date"
+	search_fields = "source","partenaire",
 
 
 @admin.register(Outcome)
