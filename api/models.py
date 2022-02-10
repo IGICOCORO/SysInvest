@@ -140,10 +140,19 @@ class Outcome(models.Model):
 	def __str__(self):
 		return f"{self.raison} {self.montant} "
 
-class Dette(models.Model):
-	partenaire = models.CharField(max_length=30,blank=False)
+class Pret(models.Model):
+	nom_donateur = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
 	date = models.DateTimeField(auto_now_add=True)
 	
 	def __str__(self):
-		return f"{self.nom} {self.montant}"
+		return f"{self.nom_donateur} {self.montant}"
+
+
+class Emprunt(models.Model):
+	nom_donataire = models.CharField(max_length=30,blank=False)
+	montant = models.PositiveBigIntegerField(default=20)
+	date = models.DateTimeField(auto_now_add=True)
+	
+	def __str__(self):
+		return f"{self.nom_donataire} {self.montant}"

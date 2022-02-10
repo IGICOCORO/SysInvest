@@ -137,9 +137,15 @@ class OutcomeViewset(viewsets.ModelViewSet):
 	authentication_classes = [JWTAuthentication, SessionAuthentication]
 	permission_classes = [IsAuthenticated]
 	
-class DetteViewset(viewsets.ModelViewSet):
-	serializer_class = DetteSerializer
-	queryset = Dette.objects.all()
+class PretViewset(viewsets.ModelViewSet):
+	serializer_class = PretSerializer
+	queryset = Pret.objects.all()
+	authentication_classes = [JWTAuthentication, SessionAuthentication]
+	permission_classes = [IsAuthenticated]
+
+class EmpruntViewset(viewsets.ModelViewSet):
+	serializer_class = EmpruntSerializer
+	queryset = Emprunt.objects.all()
 	authentication_classes = [JWTAuthentication, SessionAuthentication]
 	permission_classes = [IsAuthenticated]
 				

@@ -53,9 +53,14 @@ class OutcomeSerializer(serializers.ModelSerializer):
         model = Outcome
         fields = '__all__'
 
-class DetteSerializer(serializers.ModelSerializer):
+class PretSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Dette
+        model =Pret
+        fields = '__all__'
+
+class EmpruntSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Emprunt
         fields = '__all__'
 
 class TokenPairSerializer(TokenObtainPairSerializer):

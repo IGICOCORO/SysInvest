@@ -53,7 +53,13 @@ class Outcome(admin.ModelAdmin):
 	list_display = "raison","montant","partenaire","date"
 	search_fields = "raison","montant","partenaire"
 
-@admin.register(Dette)
-class Dette(admin.ModelAdmin):
-	list_display = "partenaire","montant","date"
-	search_fields = "partenaire","montant",
+@admin.register(Pret)
+class Pret(admin.ModelAdmin):
+	list_display = "nom_donateur","montant","date"
+	search_fields = "nom_donateur","montant",
+
+
+@admin.register(Emprunt)
+class Emprunt(admin.ModelAdmin):
+	list_display = "nom_donataire","montant","date"
+	search_fields = "nom_donataire","montant",
