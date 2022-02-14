@@ -147,5 +147,4 @@ class EmpruntViewset(viewsets.ModelViewSet):
 	serializer_class = EmpruntSerializer
 	queryset = Emprunt.objects.all()
 	authentication_classes = [JWTAuthentication, SessionAuthentication]
-	permission_classes = [IsAuthenticated]
-				
+	permission_classes = [IsAuthenticated]			
