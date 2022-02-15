@@ -2,6 +2,12 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
+
+@admin.register(Partenaire)
+class Partenaire(admin.ModelAdmin):
+	list_display = "user",
+	search_fields = "id",
+
 @admin.register(ComptePrincipal)
 class ComptePrincipal(admin.ModelAdmin):
 	list_display = "solde",
