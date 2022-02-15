@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Choix des  Investissement
@@ -10,17 +11,12 @@ INVESTISSEMENT_CHOICES = (
 	("Credit","Credit"),
 	("Autres investissments ","Autres investissments "),
 	)
-# Choix des  BANKS
-BANKS_CHOICES = (
-	("BCB","BCB"),
-	("BANCOBU","BANCOBU"),
-	("KCB","KCB"),
-	("CRDB","CRDB"),
-	("IBB","IBB"),
-	("ECOBANK","ECOBANK"),
-	("FINBANK","FINBANK"),
-	("DTB","DTB"),
-	)
+
+class Partenaire(models.Model):
+	user = models.OneToOneField(User,on_delete=models.CASCADE)
+
+	def __str__(self):
+		return f"{self.user.first_name} "
 
 class ComptePrincipal(models.Model):
 	id 	 = models.AutoField(primary_key=True)
@@ -125,7 +121,7 @@ class ImportesDarEsToBuja(models.Model):
 class Income(models.Model):
 	source = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
-	partenaire = models.CharField(max_length=30,blank=True,null=True)
+	partenaire = models.ForeignKey("Partenaire",on_delete=models.PROTECT)
 	date = models.DateField(auto_now_add=True)
 
 	def __str__(self):
@@ -134,14 +130,14 @@ class Income(models.Model):
 class Outcome(models.Model):
 	raison = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
-	partenaire = models.CharField(max_length=50,blank=True,null=True)
+	partenaire = models.ForeignKey("Partenaire",on_delete=models.PROTECT)
 	date = models.DateField(auto_now_add=True)
 
 	def __str__(self):
 		return f"{self.raison} {self.montant} "
 
 class Pret(models.Model):
-	nom_donateur = models.CharField(max_length=30,blank=False)
+	nom_donateur = models.ForeignKey("Partenaire",on_delete=models.PROTECT)
 	montant = models.PositiveBigIntegerField(default=20)
 	date = models.DateTimeField(auto_now_add=True)
 	
@@ -150,7 +146,7 @@ class Pret(models.Model):
 
 
 class Emprunt(models.Model):
-	nom_donataire = models.CharField(max_length=30,blank=False)
+	nom_donataire = models.ForeignKey("Partenaire",on_delete=models.PROTECT)
 	montant = models.PositiveBigIntegerField(default=20)
 	date = models.DateTimeField(auto_now_add=True)
 	
