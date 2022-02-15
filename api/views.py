@@ -14,6 +14,18 @@ from .models import *
 class TokenPairView(TokenObtainPairView):
 	serializer_class = TokenPairSerializer
 
+
+class PartenaireViewset(viewsets.ModelViewSet):
+	serializer_class = PartenaireSerializer
+	queryset = Partenaire.objects.all()
+	authentication_classes = [JWTAuthentication, SessionAuthentication]
+	permission_classes = [IsAuthenticated]
+
+	def to_representation(self, obj):
+		rep = super().to_representation(obj)
+		rep["user"] = obj.user.username
+		return rep
+
 class ComptePrincipalViewset(viewsets.ModelViewSet):
 	serializer_class = ComptePrincipalSerializer
 	queryset = ComptePrincipal.objects.all()
