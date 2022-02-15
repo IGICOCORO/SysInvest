@@ -7,6 +7,7 @@ from .views import *
 
 router = routers.DefaultRouter()
 
+router.register("Partenaire", PartenaireViewset)
 router.register("compte_Principal", ComptePrincipalViewset)
 router.register("parcelles", ParcelleViewset)
 router.register("motos", MotoViewset)

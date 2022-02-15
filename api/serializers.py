@@ -3,6 +3,16 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import *
 
+class PartenaireSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Partenaire
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep["user"] = f"{instance.user.first_name} {instance.user.last_name}"
+        return rep
+
 class ComptePrincipalSerializer(serializers.ModelSerializer):
     class Meta:
         model = ComptePrincipal
