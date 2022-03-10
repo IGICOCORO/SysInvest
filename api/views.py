@@ -39,7 +39,7 @@ class ComptePrincipalViewset(viewsets.ModelViewSet):
 		comptes = ComptePrincipal.objects.all()
 		if comptes:
 			compte:ComptePrincipal = comptes.first()
-			compte.montant += int(data["montant"])
+			compte.solde += int(data["solde"])
 			compte.save()
 			serializer = ComptePrincipalSerializer(compte, many=False)
 		else:

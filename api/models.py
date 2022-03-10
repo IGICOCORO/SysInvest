@@ -43,7 +43,7 @@ class Moto(models.Model):
 	id = models.AutoField(primary_key=True)
 	quantite = models.PositiveIntegerField(default=0)
 	prix_achat_unitaire = models.PositiveBigIntegerField(default=0)
-	date_achat = models.DateField(auto_now_add=True)
+	date_achat = models.DateTimeField(auto_now_add=True)
 	autres_depenses = models.PositiveIntegerField(default=0)
 	details = models.TextField(max_length=70)
 	date_vente_previ = models.DateField()
@@ -57,9 +57,9 @@ class Credit(models.Model):
 	nom_demandeur = models.CharField(max_length=30)
 	montant = models.PositiveBigIntegerField(default=0)
 	interet_total = models.PositiveIntegerField(default=0)
-	date_debut_credit = models.DateField(auto_now_add=True)
+	date_debut_credit = models.DateTimeField(auto_now_add=True)
 	nombre_jours_total = models.CharField(max_length=30)
-	delais_recuperation = models.DateField()
+	delais_recuperation = models.CharField(max_length=70)
 	details = models.TextField()
 	def __str__(self):
 		return f"{self.nom_demandeur} a {self.montant} remboursable dans { self.nombre_jours_total}"
@@ -122,7 +122,7 @@ class Income(models.Model):
 	source = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
 	partenaire = models.ForeignKey("Partenaire",on_delete=models.PROTECT)
-	date = models.DateField(auto_now_add=True)
+	date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return f"{self.source} {self.montant} en {self.provenance}"
@@ -131,7 +131,7 @@ class Outcome(models.Model):
 	raison = models.CharField(max_length=30,blank=False)
 	montant = models.PositiveBigIntegerField(default=20)
 	partenaire = models.ForeignKey("Partenaire",on_delete=models.PROTECT)
-	date = models.DateField(auto_now_add=True)
+	date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return f"{self.raison} {self.montant} "
